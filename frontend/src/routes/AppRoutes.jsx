@@ -7,12 +7,14 @@ import Order from '../pages/admin/Orders';
 import Customer from '../pages/admin/Customers';
 import Voucher from '../pages/admin/Vouchers';
 import Setting from '../pages/admin/Setting';
+import Register from "../components/Register/Register";
 
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products/all" element={<AllProducts />} />
