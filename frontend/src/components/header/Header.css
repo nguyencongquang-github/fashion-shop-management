@@ -56,7 +56,7 @@
     object-fit: cover; 
 }
 
-.dropdown-content {
+.dropdown-content-header {
     width: 175px;
     height: auto;
     display: none; /* Ẩn dropdown mặc định */
@@ -72,11 +72,11 @@
     margin-right: 30px;
 }
 
-.avatar-dropdown:hover .dropdown-content {
+.avatar-dropdown:hover .dropdown-content-header {
     display: block; /* Hiển thị dropdown khi hover vào avatar */
 }
 
-.dropdown-content a {
+.dropdown-content-header a {
     padding: 20px 10px; /* Padding cho các mục trong dropdown */
     text-decoration: none; /* Bỏ gạch chân */
     color: #333; /* Màu chữ */
@@ -85,13 +85,13 @@
     transition: color 0.3s ease;
 }
 
-.dropdown-content a:hover {
+.dropdown-content-header a:hover {
     background-color: #f1f1f1; /* Màu nền khi hover vào mục dropdown */
 }
-.dropdown-content svg{
+.dropdown-content-header svg{
     margin-right: 15px; /* Khoảng cách giữa icon và text */
     color: #000000; /* Màu sắc cho icon */
 }
-.dropdown-content a:last-child:hover {
+.dropdown-content-header a:last-child:hover {
     color: #ff0000; /* Đảm bảo màu đỏ cho mục "Đăng xuất" */
 }

@@ -1,7 +1,7 @@
 // src/pages/admin/AdminDashboard.jsx
 import React from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Header from '../../components/header/Header';
+import Sidebar from '../../../components/sidebar/Sidebar';
+import Header from '../../../components/header/Header';
 const Vouchers = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>

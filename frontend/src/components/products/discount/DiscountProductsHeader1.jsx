@@ -1,9 +1,17 @@
 // src/components/products/ProductHeader.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './DiscountProducts.css'; 
 
-const ProductHeader1 = ({ productCount }) => {
+const DiscountProductsHeader1 = ({ productCount }) => {
+    const navigate = useNavigate();
+
+    // Hàm chuyển hướng đến trang thêm sản phẩm giảm giá
+    const handleInsertDiscountProduct = () => {
+        navigate('/products/discountProducts/discountInfo');
+    };
     return (
-        <div className="product-total">
+        <div className="discount-total">
             <p>Tất cả sản phẩm ({productCount})</p>
             <div className="filter">
                 <select className="sort">
@@ -17,11 +25,11 @@ const ProductHeader1 = ({ productCount }) => {
                     <option value="category1">Danh mục 1</option>
                     <option value="category2">Danh mục 2</option>
                 </select>
-                <input className="search-product" type="text" placeholder="Tìm kiếm sản phẩm" />
-                <button className="insert-product">Thêm sản phẩm</button>
+                <input className="search-discount" type="text" placeholder="Tìm kiếm sản phẩm" />
+                <button className="insert-discount" onClick={handleInsertDiscountProduct}>Thêm mới</button>
             </div>
         </div>
     );
 };
 
-export default ProductHeader1;
+export default DiscountProductsHeader1;

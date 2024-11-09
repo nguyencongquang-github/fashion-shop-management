@@ -1,4 +1,5 @@
-.product-header {
+/* CSS cho header của trang thêm sản phẩm */
+.discount-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,7 +10,7 @@
     margin-bottom: 20px; 
 }
 
-.product-title {
+.discount-title {
     font-size: 24px;
     margin: 0; 
 }
@@ -36,25 +37,24 @@
     background-color: #16a085; 
 }
 
-.time-selector {
-    padding: 10px;
+
+.return-insert {
+    padding: 8px 12px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
     border-radius: 5px;
-    border: 1px solid #ced4da; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
-.specific-date-picker {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    margin-left: 10px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+.return-insert:hover {
+    background-color: #0359a9;
 }
-/* Information below product header */
-/* src/components/products/ProductHeader.css */
 
-.product-total {
+/* CSS cho header1 của trang giảm giá */
+.discount-total {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,7 +63,7 @@
     border-bottom: 1px solid #ddd;
 }
 
-.product-total p {
+.discount-total p {
     font-size: 18px;
     font-weight: bold;
     margin: 0;
@@ -77,7 +77,7 @@
 
 .sort,
 .choose-directory,
-.search-product {
+.search-discount {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -88,15 +88,15 @@
 
 .sort:hover,
 .choose-directory:hover,
-.search-product:hover {
+.search-discount:hover {
     border-color: #aaa;
 }
 
-.search-product {
+.search-discount {
     width: 200px; /* Chiều rộng lớn hơn cho ô tìm kiếm */
 }
 
-.insert-product {
+.insert-discount {
     padding: 8px 12px;
     background-color: #4CAF50;
     color: white;
@@ -107,6 +107,37 @@
     transition: background-color 0.3s;
 }
 
-.insert-product:hover {
+.insert-discount:hover {
     background-color: #45a049;
+}
+/* Css cho trang discount info   */
+.form-group .option-typediscount{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.discount-info-page{
+    width:auto;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding: 30px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.discount-for-products{
+    margin-top: 20px;
+    width:auto;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding: 30px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
