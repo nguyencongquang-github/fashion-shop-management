@@ -1,16 +1,16 @@
 // src/pages/admin/AdminDashboard.jsx
 import React from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Header from '../../components/header/Header';
-import TotalOrders from '../../components/dashboard/TotalOrders';
-import RevenueToday from '../../components/dashboard/RevenueToday';
-import OrderRevenue from '../../components/dashboard/OrderRevenue';
-import PendingOrders from '../../components/dashboard/PendingOrders';
-import SuccessfulOrders from '../../components/dashboard/SuccessfulOrders';
-import CustomerCount from '../../components/dashboard/CustomerCount';
-import DashboardHeader from '../../components/dashboard/DashboardHeader';
-import PendingOrdersCard from '../../components/dashboard/PendingOrdersCard';
-import PendingPaymentOrdersCard from '../../components/dashboard/PendingPaymentOrdersCard';
+import Sidebar from '../../../components/sidebar/Sidebar';
+import Header from '../../../components/header/Header';
+import TotalOrders from '../../../components/dashboard/TotalOrders';
+import RevenueToday from '../../../components/dashboard/RevenueToday';
+import OrderRevenue from '../../../components/dashboard/OrderRevenue';
+import PendingOrders from '../../../components/dashboard/PendingOrders';
+import SuccessfulOrders from '../../../components/dashboard/SuccessfulOrders';
+import CustomerCount from '../../../components/dashboard/CustomerCount';
+import DashboardHeader from '../../../components/dashboard/DashboardHeader';
+import PendingOrdersCard from '../../../components/dashboard/PendingOrdersCard';
+import PendingPaymentOrdersCard from '../../../components/dashboard/PendingPaymentOrdersCard';
 import './Dashboard.css';
 
 const Dashboard = () => {
