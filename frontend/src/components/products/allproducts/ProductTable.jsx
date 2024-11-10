@@ -1,4 +1,3 @@
-// src/components/products/ProductTable.jsx
 import React, { useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import './ProductTable.css';
@@ -6,6 +5,8 @@ import './ProductTable.css';
 const ProductTable = ({ products }) => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+    const [editingProduct, setEditingProduct] = useState(null);  // State for the product being edited
+    const [isModalOpen, setIsModalOpen] = useState(false);  // State for managing modal visibility
 
     // Xử lý khi checkbox chọn tất cả được bật hoặc tắt
     const handleSelectAll = (e) => {
@@ -27,11 +28,10 @@ const ProductTable = ({ products }) => {
             }
         });
     };
+
     const handleSelectDelete = () => {
-        // Xử lý xóa sản phẩm (giả lập ở đây)
         console.log('Sản phẩm sẽ bị xóa:', selectedProducts);
         setShowConfirmDelete(false);
-        // Sau khi xóa xong, reset selectedProducts
         setSelectedProducts([]);
     };
 
@@ -42,26 +42,86 @@ const ProductTable = ({ products }) => {
     const handleCancelDelete = () => {
         setShowConfirmDelete(false);
     };
-    
+
+    // Hàm xử lý khi click vào icon sửa
+    const handleEdit = (product) => {
+        setEditingProduct(product);  // Set the selected product to be edited
+        setIsModalOpen(true);  // Open the modal
+    };
+
+    // Hàm xử lý khi click vào icon xóa
+    const handleDelete = (id) => {
+        console.log('Xóa sản phẩm với ID:', id);
+    };
+
+    // Handle form submission to update the product
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Sửa sản phẩm:', editingProduct);
+        setIsModalOpen(false);  // Close the modal after submission
+    };
+
+    // Close modal without saving
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div>
-            <div>
-                <button className={`button-delete ${selectedProducts.length > 0 ? 'enabled' : ''}`}
-                    onClick={handleConfirmDelete} 
-                    disabled={selectedProducts.length === 0}
-                >
-                    Xóa {selectedProducts.length} sản phẩm
-                </button>
-            </div>
-            {showConfirmDelete && (
-                <div className="confirm-delete-modal">
-                    <p>Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?</p>
-                    <div className="button-group">
-                        <button onClick={handleSelectDelete}>Có</button>
-                        <button onClick={handleCancelDelete}>Không</button>
+            {/* Modal for editing product */}
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="edit-product-modal">
+                        <h2>Chỉnh sửa sản phẩm</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Tên sản phẩm:</label>
+                                <input
+                                    type="text"
+                                    value={editingProduct.name}
+                                    onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Số lượng:</label>
+                                <input
+                                    type="number"
+                                    value={editingProduct.quantity}
+                                    onChange={(e) => setEditingProduct({ ...editingProduct, quantity: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Giá:</label>
+                                <input
+                                    type="number"
+                                    value={editingProduct.price}
+                                    onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Đã bán:</label>
+                                <input
+                                    type="number"
+                                    value={editingProduct.sold}
+                                    onChange={(e) => setEditingProduct({ ...editingProduct, sold: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Loại sản phẩm:</label>
+                                <input
+                                    type="text"
+                                    value={editingProduct.category}
+                                    onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                                />
+                            </div>
+                            <button type="submit">Lưu thay đổi</button>
+                            <button type="button" onClick={handleCloseModal}>Hủy</button>
+                        </form>
                     </div>
                 </div>
             )}
+
+            {/* Product Table */}
             <table className="product-table">
                 <thead>
                     <tr>
@@ -96,7 +156,7 @@ const ProductTable = ({ products }) => {
                             <td>{product.sold}</td>
                             <td>{product.category}</td>
                             <td>
-                                <FaEdit className="icon" onClick={() => handleEdit(product.id)} />
+                                <FaEdit className="icon" onClick={() => handleEdit(product)} />
                                 |
                                 <FaTrash className="icon" onClick={() => handleDelete(product.id)} />
                             </td>
@@ -106,16 +166,6 @@ const ProductTable = ({ products }) => {
             </table>
         </div>
     );
-};
-
-// Hàm xử lý khi click vào icon sửa
-const handleEdit = (id) => {
-    console.log('Chỉnh sửa sản phẩm với ID:', id);
-};
-
-// Hàm xử lý khi click vào icon xóa
-const handleDelete = (id) => {
-    console.log('Xóa sản phẩm với ID:', id);
 };
 
 export default ProductTable;
