@@ -33,15 +33,19 @@ const Login = () => {
     } catch (error) {
       setMessage(error.response?.data.message || error.message || "Unable to login a user");
     }
+
+
+
   };
 
   return (
-    <div className="login-container">
+    <div className={`login-container ${fade ? 'fade-out' : ''}`}>
       <div className="background">
         <img src={bgImage} alt="Background" className="background-image" />
       </div>
       <div className="login-box">
         <h2>Sign in</h2>
+
         {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit}>
           <label>Email</label>
@@ -61,15 +65,10 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Enter your password"
             required
-          />
-          <div className="forgot-password">
-            <a href="#">Forgot password?</a>
-          </div>
-          <button type="submit">Sign in</button>
-        </form>
+          />   
         <div className="or-divider">or</div>
         <div className="register">
-          <button className="sign-up">Sign up</button>
+          <button className="sign-up" onClick={handleSignUp}>Sign up</button>
         </div>
       </div>
     </div>
