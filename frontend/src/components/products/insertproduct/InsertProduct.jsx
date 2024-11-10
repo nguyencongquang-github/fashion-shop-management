@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
+import {TiDelete} from 'react-icons/ti';
 import 'react-quill/dist/quill.snow.css';
 import './InsertProduct.css';
 import RightSidebar from './RightSidebar'; // Đảm bảo đường dẫn chính xác
@@ -11,6 +12,30 @@ const InsertProduct = () => {
     const [size, setSize] = useState('');
     const [description, setDescription] = useState('');
     const [details, setDetails] = useState('');
+    const [image, setImage] = useState(null);
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(URL.createObjectURL(file)); // Preview the image
+        }
+    };
+    // Handle image removal
+    const handleImageRemove = () => {
+        setImage(null); // Clear the image
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission, including image upload
+        // In a real application, you'd typically send the image to a server here
+        console.log('Product Data:', {
+            name,
+            price,
+            size,
+            description,
+            details,
+            image
+        });
+    };
 
     return (
         <div className="insert-product-page d-flex flex-row">   
@@ -65,7 +90,25 @@ const InsertProduct = () => {
                         className="details-editor"
                     />
                 </div>
-                <button type="submit" className="submit-button">Thêm sản phẩm</button>
+                <div className="form-group">
+                    <label>Hình ảnh:</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleImageChange} 
+                    />
+                    {image && (
+                        <div className="image-preview-container">
+                            <img src={image} alt="Product Preview" className="image-preview" />
+                            <button type="button" className="remove-image-button" onClick={handleImageRemove}>
+                                <TiDelete />
+                            </button>
+                        </div>
+                    )}
+                </div>
+                <button type="submit" className="submit-button" onClick={handleSubmit}>
+                    Thêm sản phẩm
+                </button>
             </div>       
                 <RightSidebar />
         </div>
