@@ -2,9 +2,9 @@
 import React from 'react';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import Header from '../../../components/header/Header';
-import DiscountInfoHeader from '../../../components/products/discount/DiscountInfoHeader';
-import DiscountInfo from '../../../components/products/discount/DiscountInfo';
-const DiscountProductsInfo = () => {
+import CustomerInfoHeader from '../../../components/customer/customerInfo/CustomerInfoHeader';
+import CustomerInfoForm from '../../../components/customer/customerInfo/CustomerInfoForm';
+const CustomerInfo = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#f0f2f5' }}>
@@ -13,8 +13,8 @@ const DiscountProductsInfo = () => {
                 <div style={{ display: 'flex', flex: 1, paddingTop: '85px' }}>
                     <Sidebar />
                     <div style={{ marginLeft: '250px', padding: '20px', width: '100%' }}>
-                        <DiscountInfoHeader />
-                        <DiscountInfo />
+                        <CustomerInfoHeader />
+                        <CustomerInfoForm />
                     </div>
                 </div>
             </div>
@@ -22,4 +22,4 @@ const DiscountProductsInfo = () => {
     );
 };
 
-export default DiscountProductsInfo;
+export default CustomerInfo;

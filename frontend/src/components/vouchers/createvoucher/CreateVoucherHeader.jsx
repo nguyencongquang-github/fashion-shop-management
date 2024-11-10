@@ -1,16 +1,16 @@
 import React from 'react';
 import { FaSync } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import "./EditVoucherHeader.css";
-const EditVoucherHeader = () => {
+
+const CreateVoucherHeader = () => {
     const navigate = useNavigate();
-    //Hàm quay về trang tất cả sản phẩm
+    //Hàm quay về trang tất cả khuyến mãi
     const handleReturnVouchers = () => {
-        navigate('/vouchers/allvouchers');
+        navigate('/vouchers/allVouchers');
     };
     return (
         <div className="voucher-header">
-            <h1 className="voucher-title">CHỈNH SỬA KHUYẾN MÃI</h1>
+            <h1 className="voucher-title">TẠO KHUYẾN MÃI</h1>
             <div className="header-actions">
                 <button className="reload-button">
                     <FaSync />
@@ -20,4 +20,5 @@ const EditVoucherHeader = () => {
         </div>
     );
 };
-export default EditVoucherHeader;
+
+export default CreateVoucherHeader;

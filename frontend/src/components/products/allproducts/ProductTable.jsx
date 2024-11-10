@@ -42,6 +42,7 @@ const ProductTable = ({ products }) => {
     const handleCancelDelete = () => {
         setShowConfirmDelete(false);
     };
+    
     return (
         <div>
             <div>

@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import './VoucherTable.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const VoucherTable = ({ vouchers }) => {
     const [selectedVouchers, setSelectedVouchers] = useState([]);
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-
+    const navigate = useNavigate();
     // Xử lý khi checkbox chọn tất cả được bật hoặc tắt
     const handleSelectAll = (e) => {
         if (e.target.checked) {
@@ -18,7 +20,7 @@ const VoucherTable = ({ vouchers }) => {
     };
 
     // Xử lý khi checkbox cho từng khuyến mãi được bật hoặc tắt
-    const handleSelectvoucher = (id) => {
+    const handleSelectVoucher = (id) => {
         setSelectedVouchers((prevSelected) => {
             if (prevSelected.includes(id)) {
                 return prevSelected.filter((voucherId) => voucherId !== id);
@@ -42,6 +44,10 @@ const VoucherTable = ({ vouchers }) => {
     const handleCancelDelete = () => {
         setShowConfirmDelete(false);
     };
+
+    const handleEditVoucher = (id) => {
+        navigate(`editvoucher/${id}`);
+    }
     return (
         <div>
             <div>
@@ -87,7 +93,7 @@ const VoucherTable = ({ vouchers }) => {
                                 <input
                                     type="checkbox"
                                     checked={selectedVouchers.includes(voucher.id)}
-                                    onChange={() => handleSelectvoucher(voucher.id)}
+                                    onChange={() => handleSelectVoucher(voucher.id)}
                                 />
                             </td>
                             <td>{voucher.name}</td>
@@ -97,7 +103,7 @@ const VoucherTable = ({ vouchers }) => {
                             <td>{voucher.status_voucher}</td>
                             <td>{voucher.used_vouchers}</td>
                             <td>
-                                <FaEdit className="icon" onClick={() => handleEdit(voucher.id)} />
+                                <FaEdit className="icon" onClick={() => handleEditVoucher(voucher.id)} />
                                 |
                                 <FaTrash className="icon" onClick={() => handleDelete(voucher.id)} />
                             </td>
@@ -107,11 +113,6 @@ const VoucherTable = ({ vouchers }) => {
             </table>
         </div>
     );
-};
-
-// Hàm xử lý khi click vào icon sửa
-const handleEdit = (id) => {
-    console.log('Chỉnh sửa khuyến mãi với ID:', id);
 };
 
 // Hàm xử lý khi click vào icon xóa
