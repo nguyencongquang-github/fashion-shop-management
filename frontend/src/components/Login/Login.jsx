@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import './Login.css';
 import bgImage from '../../assets/bg1-login.jpg';
@@ -26,6 +28,7 @@ const Login = () => {
           <input type="email" placeholder="Enter your email" required />
           <label>Password</label>
           <input type="password" placeholder="Enter your password" required />
+
           <div className="forgot-password">
             <a href="#">Forgot password</a>
           </div>
@@ -41,3 +44,4 @@ const Login = () => {
 };
 
 export default Login;
+

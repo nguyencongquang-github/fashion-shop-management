@@ -21,7 +21,9 @@ const Header = () => {
                     className="avatar" 
                     onClick={() => toggleDropdown()} // Gọi hàm để toggle dropdown
                 />
-                <div className="dropdown-content">
+
+                <div className="dropdown-content-header">
+
                     <a href="#profile"><FaUser />Thông tin cá nhân</a>
                     <a href="#settings"><FaCog />Cài đặt</a>
                     <a href="#logout"><FaSignOutAlt />Đăng xuất</a>
@@ -31,7 +33,9 @@ const Header = () => {
     );
 };
 const toggleDropdown = () => {
-  const dropdown = document.querySelector('.dropdown-content');
+
+  const dropdown = document.querySelector('.dropdown-content-header');
+
   dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 };
 

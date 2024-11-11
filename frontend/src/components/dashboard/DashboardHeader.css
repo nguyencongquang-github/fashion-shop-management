@@ -28,7 +28,7 @@
     cursor: pointer;
     margin-right: 20px; 
     transition: background-color 0.3s; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 }
 
@@ -40,14 +40,15 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ced4da; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    margin-right: 5px;
+
 
 }
 .specific-date-picker {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ced4da;
-    margin-left: 10px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 }

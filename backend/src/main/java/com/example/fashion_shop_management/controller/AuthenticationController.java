@@ -1,5 +1,20 @@
 package com.example.fashion_shop_management.controller;
 
+<<<<<<< HEAD
+import com.example.fashion_shop_management.dto.request.*;
+import com.example.fashion_shop_management.dto.response.AuthenticationResponse;
+import com.example.fashion_shop_management.dto.response.IntrospectResponse;
+import com.example.fashion_shop_management.service.AuthenticationService;
+import com.nimbusds.jose.JOSEException;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.text.ParseException;
+=======
 import com.example.fashion_shop_management.dto.response.ApiResponse;
 import com.example.fashion_shop_management.dto.user.*;
 import com.example.fashion_shop_management.service.impl.AuthServiceImpl;
@@ -18,12 +33,45 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Map;
+>>>>>>> 4b0814f078d63e6905e47a49a2ee0d6726113870
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationController {
+<<<<<<< HEAD
+    AuthenticationService authenticationService;
+
+    @PostMapping("/token")
+    ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+        var result = authenticationService.authenticate(request);
+        return ApiResponse.<AuthenticationResponse>builder()
+                .result(result)
+                .build();
+    }
+
+    @PostMapping("/introspect")
+    ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request)
+            throws ParseException, JOSEException {
+        var result = authenticationService.introspect(request);
+        return ApiResponse.<IntrospectResponse>builder()
+                .result(result)
+                .build();
+    }
+
+    @PostMapping("/refresh")
+    ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request)
+            throws ParseException, JOSEException {
+        var result = authenticationService.refreshToken(request);
+        return ApiResponse.<AuthenticationResponse>builder().result(result).build();
+    }
+
+    @PostMapping("/logout")
+    ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException {
+        authenticationService.logout(request);
+        return ApiResponse.<Void>builder().build();
+=======
     JwtService jwtService;
     AuthServiceImpl authServiceImpl;
 
@@ -102,5 +150,6 @@ public class AuthenticationController {
                 .code(HttpStatus.OK.value())
                 .message(authServiceImpl.changePassword(request, connectedUser))
                 .build();
+>>>>>>> 4b0814f078d63e6905e47a49a2ee0d6726113870
     }
 }

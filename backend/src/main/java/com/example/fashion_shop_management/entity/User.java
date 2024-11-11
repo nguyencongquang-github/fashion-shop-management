@@ -3,6 +3,21 @@ package com.example.fashion_shop_management.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+<<<<<<< HEAD
+
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+@Table(name = "user",
+uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email")
+})
+@Getter
+@Setter
+@ToString
+=======
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,10 +36,50 @@ import java.util.stream.Collectors;
 @Table(name = "users")
 @Getter
 @Setter
+>>>>>>> 4b0814f078d63e6905e47a49a2ee0d6726113870
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+<<<<<<< HEAD
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    String id;
+
+    @Column(name = "username", unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
+    String username;
+
+    String fullname;
+    String email;
+    String password;
+    Date dob;
+
+    @ManyToMany
+    Set<Role> roles;
+
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "user")
+//    Customer customer;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    List<Order> listOrder;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    List<Cart> listCart;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    List<Review> listReview;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    Set<Role> roles = new HashSet<>();
+=======
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails, Principal {
     @Id
@@ -135,4 +190,5 @@ public class User implements UserDetails, Principal {
     public boolean implies(Subject subject) {
         return Principal.super.implies(subject);
     }
+>>>>>>> 4b0814f078d63e6905e47a49a2ee0d6726113870
 }
