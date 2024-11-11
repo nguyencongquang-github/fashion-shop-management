@@ -29,6 +29,7 @@
     margin-right: 20px; 
     transition: background-color 0.3s; 
 
+
 }
 
 .reload-button:hover {
@@ -39,12 +40,15 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ced4da; 
+
     margin-right: 5px;
+
 
 }
 .specific-date-picker {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ced4da;
+
 
 }

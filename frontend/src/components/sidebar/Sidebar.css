@@ -27,7 +27,9 @@
 
 .sidebar li {
     color: #000000;
+
     margin: 5px 10px; 
+
     border-radius: 5px;
     padding: 10px 30px; 
     transition: background-color 0.3s, transform 0.3s; 
@@ -56,9 +58,11 @@
 .sidebar a:hover {
     color: #919191;
 }
+
 .sidebar-item:hover{
     color: #919191;
 }
+
 
 .sub-menu {
     display: none; /* Ẩn submenu theo mặc định */
@@ -69,17 +73,19 @@
     border: #000;
     
 
+
 }
 
 .sub-menu.show {
     display: block;
     top: 100%; /* Hiển thị các mục con khi bật */
-    
+
 }
 
 .sub-menu li {
     padding: 8px 0; /* Khoảng cách giữa các mục con */
 }
+
 .sub-menu li::before {
     content: "•"; /* Thêm dấu chấm tròn */
     color: #666;
@@ -87,12 +93,14 @@
     font-size: 20px;
 }
 
+
 .sub-menu li a {
     color: #333;
     text-decoration: none;
     display: block;
     font-size: 14px;
     margin-top: 5px;
+
 
 }
 

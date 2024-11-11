@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 const Sidebar = () => {
     const [isProductDropOn, setProductDrop] = useState(false);
+
     const [isVoucherDropOn, setVoucherDrop] = useState(false);
     const toggleProductDropdown = () => {
         setProductDrop(!isProductDropOn);
@@ -13,6 +14,7 @@ const Sidebar = () => {
     const toggleVoucherDropdown = () => {
         setVoucherDrop(!isVoucherDropOn);
     }
+
 
     return (
         <div className="sidebar">
@@ -23,6 +25,7 @@ const Sidebar = () => {
                 <li onClick={toggleProductDropdown} className="sidebar-item">
                     <div>
                         <div className="sidebar-button">
+
                             <FaBox /> Sản phẩm
                         </div>
                         {isProductDropOn && (
@@ -46,6 +49,7 @@ const Sidebar = () => {
                                 <ul className={`sub-menu ${isVoucherDropOn ? 'show' : ''}`}>
                                     <li><Link to="/vouchers/allVouchers">Tất cả khuyến mãi</Link></li>
                                     <li><Link to="/vouchers/createVoucher">Tạo mới khuyến mãi</Link></li>
+
                                 </ul>
                             </div>
                         )}
@@ -53,7 +57,6 @@ const Sidebar = () => {
                 </li>
                 <li><Link to="/orders"><FaClipboardList />Đơn hàng</Link></li>
                 <li><Link to="/customers"><FaUsers />Khách hàng</Link></li>
-                
                 <li><Link to="/setting"><FaCog />Cài đặt</Link></li>
             </ul>
         </div>
