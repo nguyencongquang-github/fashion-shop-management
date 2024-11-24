@@ -4,7 +4,7 @@ Welcome to the Fashion Shop Management repository! This project is a work in pro
 
 ## 🛠️ Technologies Being Used
 
-- **Frontend**: React.js, Redux, Tailwind CSS, Axios
+- **Frontend**: React.js, Tailwind CSS, Axios
 - **Backend**: Spring Boot, Spring Security, Spring Data JPA
 - **Database**: MySQL
 - **Authentication**: JWT (JSON Web Tokens)
