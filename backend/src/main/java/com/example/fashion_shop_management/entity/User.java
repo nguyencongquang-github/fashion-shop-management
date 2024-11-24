@@ -46,8 +46,8 @@ public class User implements UserDetails, Principal {
     @Column(name = "phone")
     String phone;
 
-    @Column(name = "avatar")
-    String avatar;
+    @Column(name = "image_url")
+    String imageUrl;
 
     @Column(name = "address")
     String address;

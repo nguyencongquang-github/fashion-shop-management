@@ -2,7 +2,6 @@ package com.example.fashion_shop_management.specification;
 
 import com.example.fashion_shop_management.constant.OrderStatus;
 import com.example.fashion_shop_management.entity.Order;
-import com.example.fashion_shop_management.entity.OrderItem;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;

@@ -26,11 +26,13 @@ public class UserDto {
     String email;
     String gender;
     String phone;
-    String avatar;
-    String verificationCode;
+    String imageUrl;
     String address;
-    LocalDateTime verificationCodeExpired;
+    boolean enabled;
+    boolean accountLocked;
     LocalDate dateOfBirth;
+    String verificationCode;
+    LocalDateTime verificationCodeExpired;
     String accessToken;
     String refreshToken;
     Set<Role> roles;

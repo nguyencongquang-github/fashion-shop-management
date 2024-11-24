@@ -1,78 +1,86 @@
 package com.example.fashion_shop_management.controller;
 
-import com.example.fashion_shop_management.dto.product.ProductDto;
-import com.example.fashion_shop_management.dto.response.ApiResponse;
-import com.example.fashion_shop_management.service.interf.ProductService;
-import lombok.AccessLevel;
+import com.example.fashion_shop_management.entity.Product;
+import com.example.fashion_shop_management.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductController {
-    ProductService productService;
 
+    private final ProductService productService;
+
+    // API createProductSize product
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ApiResponse<ProductDto> createProduct(@RequestBody ProductDto productDto) {
-        return ApiResponse.<ProductDto>builder()
-                .code(200)
-                .message("Create product successfully")
-                .data(productService.addProduct(productDto))
-                .build();
+    public ResponseEntity<Product> createProduct(@RequestParam Integer categoryId,
+                                                 @RequestParam String name,
+                                                 @RequestParam String description,
+                                                 @RequestParam MultipartFile imageUrl,
+                                                 @RequestParam BigDecimal importPrice,
+                                                 @RequestParam BigDecimal retailPrice,
+                                                 @RequestParam List<String> sizes,
+                                                 @RequestParam Integer quantity) {
+        Product product = productService.createProduct(categoryId, name, description, imageUrl, importPrice, retailPrice, sizes, quantity);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{productId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ApiResponse<ProductDto> updateProduct(@RequestBody ProductDto productDto, @PathVariable Integer productId) {
-        return ApiResponse.<ProductDto>builder()
-                .code(200)
-                .message("Update product successfully")
-                .data(productService.updateProduct(productId, productDto))
-                .build();
+    // API update product
+    @PutMapping("update/{productId}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Integer productId,
+                                                 @RequestParam Integer categoryId,
+                                                 @RequestParam String name,
+                                                 @RequestParam String description,
+                                                 @RequestParam(required = false) MultipartFile imageUrl,
+                                                 @RequestParam BigDecimal importPrice,
+                                                 @RequestParam BigDecimal retailPrice,
+                                                 @RequestParam List<String> sizes,
+                                                 @RequestParam Integer quantity) {
+        Product updatedProduct = productService.updateProduct(productId, categoryId, name, description, imageUrl, importPrice, retailPrice, sizes, quantity);
+        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{productId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ApiResponse<Boolean> deleteProduct(@PathVariable Integer productId) {
+    // API delete product
+    @DeleteMapping("delete/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Integer productId) {
         productService.deleteProduct(productId);
-        return ApiResponse.<Boolean>builder()
-                .code(200)
-                .message("Delete product successfully")
-                .data(true)
-                .build();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // API view product detail
+    @GetMapping("view-details/{productId}")
+    public ResponseEntity<Product> getProductDetails(@PathVariable Integer productId) {
+        Product product = productService.getProductById(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    // API get all products with pagination
     @GetMapping("/get-all")
-    public ApiResponse<List<ProductDto>> getAllProducts() {
-        return ApiResponse.<List<ProductDto>>builder()
-                .code(200)
-                .message("Get all products successfully")
-                .data(productService.getAllProducts())
-                .build();
+    public ResponseEntity<Map<String, Object>> getAllProducts(@RequestParam Integer page,
+                                                              @RequestParam Integer size) {
+        Map<String, Object> response = productService.getAllProducts(page, size);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/get-product/{productId}")
-    public ApiResponse<ProductDto> getProduct(@PathVariable Integer productId) {
-        return ApiResponse.<ProductDto>builder()
-                .code(200)
-                .message("Get product successfully")
-                .data(productService.getProductInfo(productId))
-                .build();
-    }
-
+    // API search products
     @GetMapping("/search")
-    public ApiResponse<List<ProductDto>> searchProduct(@RequestParam String searchValue) {
-        return ApiResponse.<List<ProductDto>>builder()
-                .code(200)
-                .message("Search product successfully")
-                .data(productService.searchProduct(searchValue))
-                .build();
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
+        List<Product> products = productService.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // API get all products by category
+    @GetMapping("/get-by-category/{categoryId}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Integer categoryId) {
+        List<Product> products = productService.getProductsByCategory(categoryId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }

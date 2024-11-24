@@ -4,9 +4,11 @@ import com.example.fashion_shop_management.constant.OrderStatus;
 import com.example.fashion_shop_management.dto.request.OrderDto;
 import com.example.fashion_shop_management.dto.response.PagedOrderResponse;
 import com.example.fashion_shop_management.entity.Order;
+//import com.example.fashion_shop_management.entity.ShoppingCart;
 import com.example.fashion_shop_management.exception.NotFoundException;
 import com.example.fashion_shop_management.mapper.OrderMapper;
 import com.example.fashion_shop_management.repository.OrderRepository;
+//import com.example.fashion_shop_management.service.CartService;
 import com.example.fashion_shop_management.specification.OrderSpecification;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +19,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class OrderServiceImpl implements OrderService {
-    OrderRepository orderRepository;
-    OrderMapper orderMapper;
+    private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
+//    private final CartService cartService;
+
 
     @Override
     public Page<OrderDto> getOrders(int page, int size) {
@@ -93,5 +98,27 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDto> getOrdersByUser(String username) {
         return orderRepository.findAllByUser_Username(username).stream().map(orderMapper::toOrderDto).toList();
+    }
+
+    @Override
+    public OrderDto placeOrder(OrderDto orderDto) {
+        return null;
+    }
+
+//    @Override
+//    public Order placeOrder(Order order) {
+//        ShoppingCart cart = order.
+//
+//    }
+
+    @Override
+    public Order checkout(Integer userId, String paymentMethod) {
+        return null;
+    }
+
+    public String generateOrderCode(int userId) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String timePart = sdf.format(new Date());
+        return "USER" + userId + "-ORDER-" + timePart;
     }
 }

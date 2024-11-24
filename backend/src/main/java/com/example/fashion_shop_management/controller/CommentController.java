@@ -5,8 +5,7 @@ import com.example.fashion_shop_management.dto.response.ApiResponse;
 import com.example.fashion_shop_management.dto.comment.CommentResponseDto;
 import com.example.fashion_shop_management.mapper.CommentMapper;
 //import com.example.fashion_shop_management.mapper.CommentMapperImpl;
-import com.example.fashion_shop_management.service.interf.CommentService;
-import jakarta.validation.Valid;
+import com.example.fashion_shop_management.service.comment.CommentService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -19,13 +18,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@RequestMapping("/comment")
+@RequestMapping("api/comments")
 public class CommentController {
     CommentService commentService;
     CommentMapper commentMapper;
 
     @GetMapping("")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'CUSTOMER')")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse<List<CommentResponseDto>> getAllComments(
             @RequestParam(value = "user_id", required = false) Integer userId,
@@ -58,12 +56,13 @@ public class CommentController {
                 .build();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'CUSTOMER')")
     @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<CommentResponseDto> updateComment(@PathVariable("id") Integer commentId,
-                                              @Valid @RequestBody CommentRequestDto request) {
-        commentService.updateComment(commentId, request);
+    public ApiResponse<CommentResponseDto> updateComment(@RequestParam("comment_id") Integer commentId,
+                                                         @RequestParam("user_id") Integer userId,
+                                                         @RequestBody CommentRequestDto request) {
+        commentService.updateComment(commentId, userId, request);
         return ApiResponse.<CommentResponseDto>builder()
                 .code(200)
                 .message("Update comment successfully")
@@ -71,11 +70,11 @@ public class CommentController {
                 .build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'CUSTOMER')")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse<Boolean> deleteComment(
-            @PathVariable("id") Integer commentId,
+            @RequestParam("comment_id") Integer commentId,
             @RequestParam("user_id") Integer userId) {
         return ApiResponse.<Boolean>builder()
                 .code(200)
@@ -85,7 +84,6 @@ public class CommentController {
     }
 
     @GetMapping("/average-rating")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'CUSTOMER')")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse<Double> getAverageRating(@RequestParam("product_id") Integer productId) {
         return ApiResponse.<Double>builder()

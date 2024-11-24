@@ -29,10 +29,9 @@ public class Order {
 
     String code;
     String shippingAddress;
-    String shippingPhone;
 
     OrderStatus status;
-    String paymentStatus;
+    String paymentMethod;
 
     BigDecimal totalAmount;
     BigDecimal discountAmount;
@@ -42,8 +41,8 @@ public class Order {
     @JoinColumn(name = "promotion_id")
     Promotion promotion;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    List<OrderItem> orderItems;
+//    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    List<CartItem> cartItems;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

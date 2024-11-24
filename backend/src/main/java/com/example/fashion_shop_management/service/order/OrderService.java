@@ -3,6 +3,7 @@ package com.example.fashion_shop_management.service.order;
 import com.example.fashion_shop_management.constant.OrderStatus;
 import com.example.fashion_shop_management.dto.request.OrderDto;
 import com.example.fashion_shop_management.dto.response.PagedOrderResponse;
+import com.example.fashion_shop_management.entity.Order;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
@@ -17,4 +18,7 @@ public interface OrderService {
     OrderDto updateOrder(OrderDto order, int orderId);
     PagedOrderResponse filterOrders(String status, LocalDateTime startDate, LocalDateTime endDate, Integer orderId, int page, int size);
     List<OrderDto> getOrdersByUser(String username);
+    OrderDto placeOrder(OrderDto orderDto);
+
+    Order checkout(Integer userId, String paymentMethod);
 }

@@ -1,15 +1,14 @@
 package com.example.fashion_shop_management.dto.product;
 
-import com.example.fashion_shop_management.dto.category.CategoryDto;
-import com.example.fashion_shop_management.dto.request.PromotionDto;
-import com.example.fashion_shop_management.entity.Category;
-import com.example.fashion_shop_management.entity.Promotion;
+import com.example.fashion_shop_management.dto.product_details.ProductDetailsDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,12 +21,11 @@ public class ProductDto {
     Integer id;
     String name;
     String description;
-    String imageUrl;
     String color;
-    String size;
+    MultipartFile image;
     BigDecimal importPrice;
     BigDecimal retailPrice;
-    int stock;
-    CategoryDto category;
-    PromotionDto promotion;
+    Integer categoryId;
+    Integer promotionId;
+    List<ProductDetailsDto> sizeDetails;
 }

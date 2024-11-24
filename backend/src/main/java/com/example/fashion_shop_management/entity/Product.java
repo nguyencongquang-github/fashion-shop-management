@@ -1,5 +1,6 @@
 package com.example.fashion_shop_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,24 +28,35 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(name = "name", nullable = false)
     String name;
+
+    @Column(name = "description")
     String description;
+
+    @Column(name = "image_url")
     String imageUrl;
-    String color;
-    String size;
-    BigDecimal importPrice;
-    BigDecimal retailPrice;
-    int stock;
+
+    @Column(name = "import_price", nullable = false)
+    BigDecimal importPrice = BigDecimal.ZERO;
+
+    @Column(name = "retail_price", nullable = false)
+    BigDecimal retailPrice = BigDecimal.ZERO;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    List<ProductSize> productSizes = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonBackReference
     Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "promotion_id")
-    Promotion promotion;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "promotion_id")
+//    Promotion promotion;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     List<Comment> comments = new ArrayList<>();
 
     @CreatedDate

@@ -37,8 +37,8 @@ public class Promotion {
     LocalDateTime startDate;
     LocalDateTime endDate;
 
-    @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
-    List<Product> products;
+//    @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
+//    List<Product> products;
 
     @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
     List<Order> orders;

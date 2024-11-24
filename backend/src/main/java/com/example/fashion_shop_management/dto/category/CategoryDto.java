@@ -1,6 +1,7 @@
 package com.example.fashion_shop_management.dto.category;
 
 import com.example.fashion_shop_management.dto.product.ProductDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -18,5 +19,6 @@ import java.util.List;
 public class CategoryDto {
     Integer id;
     String name;
+    @JsonIgnore
     List<ProductDto> products;
 }
